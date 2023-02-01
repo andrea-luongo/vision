@@ -87,7 +87,8 @@ def _batched_nms_coordinate_trick(
     # only on the class idx, and is large enough so that boxes
     # from different classes do not overlap
     if boxes.numel() == 0:
-        return torch.empty((0,), dtype=torch.int64, device=boxes.device)
+        #return torch.empty((0,), dtype=torch.int64, device=boxes.device)
+        return torch.empty((100,), dtype=torch.int64, device=boxes.device)
     max_coordinate = boxes.max()
     offsets = idxs.to(boxes) * (max_coordinate + torch.tensor(1).to(boxes))
     boxes_for_nms = boxes + offsets[:, None]
